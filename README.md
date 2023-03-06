@@ -7,7 +7,7 @@ The parser has a cron job that runs at an interval of 20 seconds to fetch all in
 in the blocks and store the transactions in in-memory storage. At the same time, each of the transaction will check 
 `From` and `To` address. If the address are present in the subscription list, it can be linked up to the notification
 service to inform users regarding the transaction. There are a couple of APIs that are available to interact with parser
-as shown in `API Requests Samples` section below. 
+as shown in [API Requests Samples](#api-requests-samples) section below. 
 
 Due to the in-memory storage, all the data (transactions and subscription) are not persistence, but it is extensible to 
 support other storage like relational database. Id currently are randomly generated via rand function, but it should 
