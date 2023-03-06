@@ -16,7 +16,6 @@ func getTransactionsByAddress(w http.ResponseWriter, r *http.Request) {
 	tr.PageInfo = PageInfo{
 		Page:     1,
 		PageSize: 10,
-		Desc:     true,
 	}
 	err := json.NewDecoder(r.Body).Decode(&tr)
 	if err != nil {

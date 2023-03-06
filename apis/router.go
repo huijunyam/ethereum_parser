@@ -2,6 +2,8 @@ package apis
 
 import (
 	"errors"
+	"ethereum_parser/config"
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -15,7 +17,7 @@ func Init() {
 	mux.HandleFunc("/v1/eth-mainnet/subscribe", subscribe)
 	mux.HandleFunc("/v1/eth-mainnet/transactions", getTransactionsByAddress)
 
-	err := http.ListenAndServe(":3333", mux)
+	err := http.ListenAndServe(fmt.Sprintf(":%s", config.Conf.ServerPort), mux)
 
 	if errors.Is(err, http.ErrServerClosed) {
 		log.Printf("server closed\n")

@@ -26,6 +26,10 @@ func subscribe(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	if s.User == "" {
+		s.User = "default_test_user"
+	}
+
 	var monitor *subscription.AddressMonitor
 	cron.AddressSubscriptionLock.Lock()
 	defer cron.AddressSubscriptionLock.Unlock()
@@ -36,7 +40,7 @@ func subscribe(w http.ResponseWriter, r *http.Request) {
 		cron.AddressSubscription[s.Address] = monitor
 	}
 
-	observer := subscription.NewAddressObserver("huijun")
+	observer := subscription.NewAddressObserver(s.User)
 	isAttached, err := monitor.Attach(observer)
 	if err != nil {
 		bindErrorResponse(w, err, http.StatusBadRequest)

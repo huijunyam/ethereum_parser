@@ -1,0 +1,3 @@
+RedisHost: localhost
+RedisPort: 6379
+ServerPort: 3333

@@ -1,6 +1,9 @@
 package dal
 
-import "ethereum_parser/models"
+import (
+	"ethereum_parser/config"
+	"ethereum_parser/models"
+)
 
 type DataStorage interface {
 	GetTransactionList(string, int64, int64) ([]models.Transaction, int64, error)
@@ -16,7 +19,7 @@ type Storage struct {
 var StorageClient Storage
 
 func Init() {
-	redisStorage := NewRedis("localhost", "6379", "")
+	redisStorage := NewRedis(config.Conf.RedidHost, config.Conf.RedisPort, "")
 	StorageClient = Storage{DbClient: redisStorage}
 }
 

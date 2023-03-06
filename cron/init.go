@@ -21,18 +21,17 @@ var AddressSubscriptionLock sync.RWMutex
 
 func Init() {
 	AddressSubscription = make(map[string]*subscription.AddressMonitor)
-	pollBlockInfo()
 	go func() {
-		time.Sleep(20 * time.Second)
-		tick := time.Tick(20 * time.Second)
+		tick := time.Tick(10 * time.Second)
 		for range tick {
 			pollBlockInfo()
 		}
+		time.Sleep(10 * time.Second)
 	}()
 }
 
 func pollBlockInfo() {
-	ok, err := dal.StorageClient.DbClient.Client.SetNX(pollingBlockKey, 1, time.Second*20).Result()
+	ok, err := dal.StorageClient.DbClient.Client.SetNX(pollingBlockKey, 1, time.Second*10).Result()
 	if err != nil {
 		log.Printf("error in setting polling block key, err:%v", err.Error())
 		return

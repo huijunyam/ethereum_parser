@@ -6,6 +6,7 @@ type GetBlockInfoReq struct {
 
 type SubscriptionReq struct {
 	Address string `json:"address"`
+	User    string `json:"user"`
 }
 
 type GetTransactionsRequest struct {
@@ -17,7 +18,6 @@ type PageInfo struct {
 	Page     int64 `json:"page"`
 	PageSize int64 `json:"page_size"`
 	Total    int64 `json:"total"`
-	Desc     bool  `json:"desc"`
 }
 
 type Response struct {

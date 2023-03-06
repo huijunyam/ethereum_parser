@@ -52,33 +52,6 @@ func (c *RedisCache) GetTransactionList(address string, offset, count int64) ([]
 	return transactions, total, nil
 }
 
-//
-//func (c *RedisCache) SaveTransactions(key string, transactions []models.Transaction) error {
-//	//total, err := c.GetListLen(key)
-//	//if err != nil {
-//	//	return err
-//	//}
-//	//val, err := json.Marshal(transactions)
-//	//if err != nil {
-//	//	fmt.Printf("error in marshalling transaction, err:%v", err.Error())
-//	//	return err
-//	//}
-//	//if total != 0 {
-//	//	_, err = c.AddToList(key, string(val))
-//	//	if err != nil {
-//	//		fmt.Printf("error in saving transaction, err:%v", err.Error())
-//	//		return err
-//	//	}
-//	//	return nil
-//	//}
-//	_, err := c.CreateAndAddToList(key, transactions)
-//	if err != nil {
-//		fmt.Printf("error in saving transaction, err:%v", err.Error())
-//		return err
-//	}
-//	return nil
-//}
-
 func (c *RedisCache) SaveTransactions(key string, transactions []models.Transaction) error {
 	transactionsStr := make([]string, 0)
 	for _, t := range transactions {

@@ -14,7 +14,7 @@ func getCurrentBlock(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	hexVal, err := json_rpc.GetCurrentBlock("1")
+	hexVal, err := json_rpc.GetCurrentBlock(helper.GenId())
 	if err != nil {
 		bindErrorResponse(w, err, http.StatusBadRequest)
 		return
@@ -43,7 +43,7 @@ func getBlockInfo(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	blockInfo, err := json_rpc.GetBlockByNumber("1", b.Hex, true)
+	blockInfo, err := json_rpc.GetBlockByNumber(helper.GenId(), b.Hex, true)
 	if err != nil {
 		bindErrorResponse(w, err, http.StatusBadRequest)
 		return

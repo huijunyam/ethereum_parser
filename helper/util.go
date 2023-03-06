@@ -2,6 +2,7 @@ package helper
 
 import (
 	"fmt"
+	"math/rand"
 	"strconv"
 	"strings"
 )
@@ -17,6 +18,10 @@ func ConvertHexStringToInt(hex string) (int64, error) {
 		return int64(decimalVal), err
 	}
 	return int64(decimalVal), nil
+}
+
+func GenId() string {
+	return string(rand.Intn(10000))
 }
 
 func isDecimal(hexString string) string {
